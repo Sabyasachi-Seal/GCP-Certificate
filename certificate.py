@@ -30,11 +30,19 @@ def replace_participant_name(doc, name):
     string = "{Name Surname}"
     replace_info(doc, name, string)
 
-def replace_event_name(doc, event):
-    string = "{INSERT EVENT NAME}"
-    replace_info(doc, event, string)
+def replace_gdsc_name(doc, gdsc):
+    string = "{College Name}"
+    replace_info(doc, gdsc, string)
 
-def replace_ambassador_name(doc, name):
-    string = "{student ambassador name}"
-    replace_info(doc, name, string)
+def replace_lead_name(doc, lead):
+    string = "{Lead Name}"
+    replace_info(doc, lead, string)
+
+def replace_facilitator_name(doc, facilitator):
+    string = "{Facilitator Name}"
+    replace_info(doc, facilitator, string)
+
+def replace_posi(doc, posi):
+    string = "{Posi}"
+    replace_info(doc, posi, string)
 
