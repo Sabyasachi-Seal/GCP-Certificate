@@ -44,5 +44,5 @@ def replace_facilitator_name(doc, facilitator):
 
 def replace_posi(doc, posi):
     string = "{Posi}"
-    replace_info(doc, posi, string)
+    replace_info(doc, posi+".", string)
 
