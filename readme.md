@@ -1,13 +1,15 @@
-# Microsoft Learn Student Ambassador Certificate Automation
+# Google Cloud Event Certificate Generator
 
 This repo simply use a template certificate docx file and generates certificates
 both docx and pdf.
 
 ## Setup
 - Working on Windows only.
+- Copy your porgress report to the Data Folder and rename it as `ParticipantList.csv`
+
 
 ```
-cd MLSA-Certificate-Automate
+cd GCCP-Certificate
 pip install -r requirements.txt
 python main_certificate.py
 
