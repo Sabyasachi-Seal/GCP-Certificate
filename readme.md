@@ -11,7 +11,7 @@ both docx and pdf.
 ## Run these 4 commands in your terminal
 
 ```
-git clone https://github.com/Sabyasachi-Seal/GCCP-Certificate
+git clone https://github.com/Sabyasachi-Seal/GCP-Certificate
 cd GCCP-Certificate
 pip install -r requirements.txt
 python main_certificate.py
