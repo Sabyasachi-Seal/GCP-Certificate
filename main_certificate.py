@@ -30,26 +30,28 @@ def create_docx_files(filename, list_participate):
     gdsc = input("Enter your college name: ")
     lead = input("Enter GDSC Lead Name: ")
     facilitator = input("Enter GCCP Facilitator Name: ")
-    posi = input("Enter thier position: ")
+    event = input("Enter the event name: ")
 
     for participate in list_participate:
         # use original file everytime
         doc = Document(filename)
 
-        name = participate["Name Surname"]
-        event = participate["Workshop"]
+        name = participate["Student Name"]
+
+        if participate["Pathway Completion Status"] == "No":
+            continue
 
         replace_participant_name(doc, name)
         replace_gdsc_name(doc, gdsc)
         replace_lead_name(doc, lead)
         replace_facilitator_name(doc, facilitator)
-        replace_posi(doc, posi)
+        replace_event(doc, event)
 
         doc.save('Output/Doc/{}.docx'.format(name))
 
         # ! if your program working slowly, comment this two line and open other 2 line.
-        # print("Output/{}.pdf Creating".format(name))
-        # convert('Output/Doc/{}.docx'.format(name), 'Output/Pdf/{}.pdf'.format(name))
+        print("Output/{}.pdf Creating".format(name))
+        convert('Output/Doc/{}.docx'.format(name), 'Output/Pdf/{}.pdf'.format(name))
 
         # ! Open those lines and comment above 2 lines if your program working extremely slow
         # os.system("docx2pdf Output/Doc/")
@@ -59,7 +61,7 @@ def create_docx_files(filename, list_participate):
 # get certificate temple path
 certificate_file = "Data/Event Certificate Template.docx"
 # get participants path
-participate_file = "Data/"+("Participant List.csv" if (input("Test Mode (Y/N): ").lower())[0]=="n" else "temp.csv")
+participate_file = "Data/"+("ParticipantList.csv" if (input("Test Mode (Y/N): ").lower())[0]=="n" else "temp.csv")
 
 # get participants
 list_participate = get_participants(participate_file);

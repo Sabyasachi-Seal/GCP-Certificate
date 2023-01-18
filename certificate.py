@@ -42,7 +42,7 @@ def replace_facilitator_name(doc, facilitator):
     string = "{Facilitator Name}"
     replace_info(doc, facilitator, string)
 
-def replace_posi(doc, posi):
-    string = "{Posi}"
+def replace_event(doc, posi):
+    string = "{Event Name}"
     replace_info(doc, posi+".", string)
 
