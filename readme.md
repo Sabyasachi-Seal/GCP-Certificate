@@ -12,7 +12,7 @@ both docx and pdf.
 
 ```
 git clone https://github.com/Sabyasachi-Seal/GCP-Certificate
-cd GCCP-Certificate
+cd GCP-Certificate
 pip install -r requirements.txt
 python main_certificate.py
 ```
