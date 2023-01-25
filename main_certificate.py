@@ -12,6 +12,7 @@ from docx2pdf import convert
 
 
 mailerpath = "Data/Mail.xlsm"
+htmltemplatepath = "Data/mailtemplate.html"
 
 # create output folder if not exist
 try:
@@ -45,14 +46,26 @@ def getworkbook(filename):
     sheet = wb.active
     return wb, sheet
 
+def gethtmltemplate(htmltemplatepath=htmltemplatepath):
+    return open(htmltemplatepath, "r").read()
+
+def getmail(name, event, lead, facilitator, gdsc):
+    sub = f"[{event}] Certificate of Completion"
+
+    html = gethtmltemplate(htmltemplatepath)
+
+    body = html.format(name=name, event=event, lead=lead, facilitator=facilitator, gdsc=gdsc)
+
+    return sub, body
+
 def create_docx_files(filename, list_participate):
 
     wb, sheet = getworkbook(mailerpath)
 
-    gdsc = "s"
-    lead = gdsc
-    facilitator = gdsc
-    event = gdsc
+    gdsc = input("Enter your college name: ")
+    lead = input("Enter GDSC Lead Name: ")
+    facilitator = input("Enter GCCP Facilitator Name: ")
+    event = input("Enter the event name: ")
 
     for index, participate in enumerate(list_participate):
         # use original file everytime
@@ -63,21 +76,6 @@ def create_docx_files(filename, list_participate):
 
         name = participate["Student Name"]
         email = participate["Student Email"]
-
-        sub = f"[{event}] Certificate of Completion"
-
-        body = f''' Dear {name},
-
-    Thank you for participating in {event}. 
-    Your participation is valuable to us.
-    Please find the attached certificate of completion.
-
-Thanks and Regards,
-{facilitator} 
-{event} Facilitator,
-and
-{lead}
-GDSC TMSL Lead'''
 
         replace_participant_name(doc, name)
         replace_gdsc_name(doc, gdsc)
@@ -92,6 +90,8 @@ GDSC TMSL Lead'''
         convert('Output/Doc/{}.docx'.format(name), 'Output/Pdf/{}.pdf'.format(name))
 
         filepath = os.path.abspath('Output/Pdf/{}.pdf'.format(name))
+
+        sub, body = getmail(name, event, lead, facilitator, gdsc)
 
         updatemailer(row=(offset+index), workbook=wb,  sheet=sheet, email=email, filepath=filepath, sub=sub, body=body, status="Send")
 
