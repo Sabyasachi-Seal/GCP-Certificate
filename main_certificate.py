@@ -54,7 +54,9 @@ def getmail(name, event, lead, facilitator, gdsc):
 
     html = gethtmltemplate(htmltemplatepath)
 
-    body = html.format(name=name, event=event, lead=lead, facilitator=facilitator, gdsc=gdsc)
+    short = "".join([i[0] for i in event.split(" ")])
+
+    body = html.format(name=name, event=event, short=short, lead=lead, facilitator=facilitator, gdsc=gdsc)
 
     return sub, body
 
