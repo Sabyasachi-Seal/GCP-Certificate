@@ -30,8 +30,6 @@ def get_participants(f):
             data.append(row) # append all results
     return data
 
-offset = 2
-
 def updatemailer(row, workbook, sheet, email, filepath, sub, body, status, cc=""):
     sheet.cell(row=row, column=1).value = email
     sheet.cell(row=row, column=2).value = cc
@@ -60,7 +58,7 @@ def getmail(name, event, lead, facilitator, gdsc):
 
     return sub, body
 
-def create_docx_files(filename, list_participate):
+def create_docx_files(filename, list_participate, incomp=0, offset=2):
 
     wb, sheet = getworkbook(mailerpath)
 
@@ -74,6 +72,7 @@ def create_docx_files(filename, list_participate):
         doc = Document(filename)
 
         if participate["Pathway Completion Status"] == "No":
+            incomp += 1
             continue
 
         name = participate["Student Name"]
@@ -95,7 +94,7 @@ def create_docx_files(filename, list_participate):
 
         sub, body = getmail(name, event, lead, facilitator, gdsc)
 
-        updatemailer(row=(offset+index), workbook=wb,  sheet=sheet, email=email, filepath=filepath, sub=sub, body=body, status="Send")
+        updatemailer(row=(offset+index-incomp), workbook=wb,  sheet=sheet, email=email, filepath=filepath, sub=sub, body=body, status="Send")
 
     
 # get certificate temple path
