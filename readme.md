@@ -18,7 +18,8 @@ python main_certificate.py
 ```
 ---
 ## Customization
-- You can change the template file in the `Data` folder.
+- You can change the certificate template file in the `Data` folder.
+- You can change the email template file in the `Data` folder.
 
 ## How to send emails?
 - You can use the `Mail.xlms` file to send emails to the participants.
