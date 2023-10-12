@@ -1,4 +1,4 @@
-
+import subprocess
 import os
 
 os.system("pip install -r requirements.txt")
@@ -58,6 +58,17 @@ def getmail(name, event, lead, facilitator, gdsc):
 
     return sub, body
 
+def convert_to_pdf(input_path, output_path):
+    cmd = [
+        "unoconv", 
+        "-f", "pdf", 
+        "-o", output_path, 
+        input_path
+    ]
+    process = subprocess.Popen(cmd, stderr=subprocess.PIPE)
+    output, error = process.communicate()
+    return output, error
+
 def create_docx_files(filename, list_participate, incomp=0, offset=2):
 
     wb, sheet = getworkbook(mailerpath)
@@ -71,7 +82,7 @@ def create_docx_files(filename, list_participate, incomp=0, offset=2):
         # use original file everytime
         doc = Document(filename)
 
-        if participate["Pathway Completion Status"] == "No":
+        if participate["Total Completions of both Pathways"] == "No":
             incomp += 1
             continue
 
@@ -88,7 +99,7 @@ def create_docx_files(filename, list_participate, incomp=0, offset=2):
 
         # ! if your program working slowly, comment this two line and open other 2 line.
         print("Output/{}.pdf Creating".format(name))
-        convert('Output/Doc/{}.docx'.format(name), 'Output/Pdf/{}.pdf'.format(name))
+        convert_to_pdf('Output/Doc/{}.docx'.format(name), 'Output/Pdf/{}.pdf'.format(name))
 
         filepath = os.path.abspath('Output/Pdf/{}.pdf'.format(name))
 
