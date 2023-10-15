@@ -11,7 +11,7 @@ smtp_server = 'smtp.gmail.com'
 smtp_port = 587
 
 # Load the Excel file
-file_path = 'Mail.xlsm'
+file_path = 'Data/Mail.xlsm'
 workbook = openpyxl.load_workbook(file_path)
 worksheet = workbook.active
 
