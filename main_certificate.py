@@ -1,5 +1,6 @@
 import subprocess
 import os
+import platform
 
 os.system("pip install -r requirements.txt")
 
@@ -99,7 +100,10 @@ def create_docx_files(filename, list_participate, incomp=0, offset=2):
 
         # ! if your program working slowly, comment this two line and open other 2 line.
         print("Output/{}.pdf Creating".format(name))
-        convert_to_pdf('Output/Doc/{}.docx'.format(name), 'Output/Pdf/{}.pdf'.format(name))
+        if platform.system() == 'Windows':
+            convert('Output/Doc/{}.docx'.format(name), 'Output/Pdf/{}.pdf'.format(name))
+        else:
+            convert_to_pdf('Output/Doc/{}.docx'.format(name), 'Output/Pdf/{}.pdf'.format(name))
 
         filepath = os.path.abspath('Output/Pdf/{}.pdf'.format(name))
 
