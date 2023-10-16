@@ -1,5 +1,6 @@
 import openpyxl
 import smtplib
+import os
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from email.mime.application import MIMEApplication
@@ -53,6 +54,7 @@ for row in worksheet.iter_rows(min_row=2, values_only=True):  # Assuming data st
 
     # Attach the file (if any)
     if attachment_path:
+        attachment_path = os.path.normpath(attachment_path)
         attachment = MIMEApplication(open(attachment_path, 'rb').read())
         attachment.add_header('Content-Disposition', 'attachment', filename='GoogleCloudCertificate.pdf')
         message.attach(attachment)
