@@ -82,11 +82,11 @@ def create_docx_files(filename, list_participate, incomp=0, offset=2):
     for index, participate in enumerate(list_participate):
         # use original file everytime
         if participate["Total Completions of both Pathways"] == "No":
-            filename = "Data/Event Certificate Template.docx" # Certificate Template for participants
+            filename = "Data/Event Certificate Template Participation.docx" # Certificate Template for participants
             # incomp += 1
             doc = Document(filename)
         elif participate["Total Completions of both Pathways"] == "Yes":
-            filename = "Data/Certificate Temp.docx" # Certificate Template for completions
+            filename = "Data/Event Certificate Template.docx" # Certificate Template for completions
             doc = Document(filename)
 
         name = participate["Student Name"]
