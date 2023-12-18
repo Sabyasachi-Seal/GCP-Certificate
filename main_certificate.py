@@ -116,7 +116,7 @@ def create_docx_files(filename, list_participate, incomp=0, offset=2):
 # get certificate temple path
 certificate_file = "Data/Event Certificate Template.docx"
 # get participants path
-participate_file = "Data/"+("ParticipantList.csv" if (input("Test Mode (Y/N): ").lower())[0]=="n" else "temp.csv")
+participate_file = "Data/"+("ParticipantList.csv")
 
 # get participants
 list_participate = get_participants(participate_file);
