@@ -1,7 +1,5 @@
 # Google Cloud Event Certificate Generator
 
-### Link to Web-App: https://gcp-certificate.iamseal.tech/
-
 ---
 
 This repo simply use a template certificate docx file and generates certificates
